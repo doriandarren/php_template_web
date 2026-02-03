@@ -1,33 +1,21 @@
 <?php
 
 require 'functions.php';
+require 'router.php';
+require 'Database.php';
 
 
-$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
-
-
-
-function abort($code) {
-    http_response_code($code);
-    require 'views/{$code}.view.php';  
-    die();
-}
-
-
-$routes = [
-    '/' => 'controllers/index.php',
-    '/about' => 'controllers/about.php',
-    '/contact' => 'controllers/contact.php',
-];
+$config = require 'config.php';
+$db = new Database($config['database']);
 
 
 
-if(array_key_exists($uri, $routes)){
-    
-    require $routes[$uri];
+// $id = $_GET['id'];
+// $query = "select * from posts where id = :id";
+// $posts = $db->query($query, [':id' => $id])->fetch();
 
-} else {
+// dd($posts);
 
-   abort(404);
-
-}
+// foreach ($posts as $post) {
+//     echo "<li>" . $post['title'] . "</li>";
+// }

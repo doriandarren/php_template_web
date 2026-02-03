@@ -24,6 +24,13 @@
                     </a>
 
                     <a
+                        href="/notes"
+                        class="inline-flex items-center px-1 pt-1 text-sm font-medium <?=  urlIs('/about') ? 'bg-gray-900 text-white border-b-2 border-indigo-600' : 'text-gray-500' ?> dark:border-indigo-500 dark:text-white"
+                    >
+                        Notes
+                    </a>
+
+                    <a
                         href="/contact"
                         class="inline-flex items-center px-1 pt-1 text-sm font-medium <?= urlIs('/contact') ? 'bg-gray-900 text-white border-b-2 border-indigo-600' : 'text-gray-500' ?> dark:border-indigo-500 dark:text-white"
                     >
