@@ -3,8 +3,8 @@
 
 class Database
 {
-
     public $connection;
+    public $statement;
 
 
     public function __construct($config, $username = 'root', $password = '123456')
@@ -19,15 +19,47 @@ class Database
         ]);
     }
 
-
-
     public function query($query, $params = [])
+    { // Inicio del ambito de la funciónn query
+
+        $this->statement = $this->connection->prepare($query);
+
+        $this->statement->execute($params);
+
+        return $this;
+
+    } // Fin del ambito de la funciónn query
+
+
+    /**
+     * Encuentra todos los registros de la DB
+     */
+    public function get()
     {
-
-        $statement = $this->connection->prepare($query);
-
-        $statement->execute($params);
-
-        return $statement;
+        return $this->statement->fetchAll();    
     }
+
+
+    /**
+     * Encuentra un solo registro en la DB
+     */
+    public function find()
+    {
+        return $this->statement->fetch();
+    }
+    
+    /**
+     * Encuentra un solo registro en la DB y manda un error si no lo encuentra
+     */
+    public function findOrFail()
+    {
+        $result = $this->find();
+        
+        if (!$result) {
+            abort(Response::NOT_FOUND);
+        }
+
+        return $result;
+    }
+
 }
