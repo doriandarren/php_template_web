@@ -7,7 +7,7 @@
 <main>
     <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
 
-        <form method="POST">
+        <form method="POST" action="/notes">
             <div class="space-y-12">
                 <div class="border-b border-gray-900/10 pb-12 dark:border-white/10">
 
@@ -20,10 +20,9 @@
                                     id="body"
                                     name="body"
                                     rows="3"
-                                    class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"
-                                    placeholder="Here's new idea">
-                                    <?= $_POST['body'] ?? '' ?>
-                                </textarea>
+                                    class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-800 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"
+                                    placeholder="Here's new idea"
+                                ><?= $_POST['body'] ?? '' ?></textarea>
 
                                 <?php if (isset($errors['body'])) : ?>
                                     <p class="text-red-500 text-xs mt-2">

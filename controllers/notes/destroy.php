@@ -9,20 +9,22 @@ $db = new Database($config['database']);
 $currentUserId = 1;
 
 
-// Entra aqui para mostrar la nota
+// Entra aqui para eliminar la nota
 
 $note = $db->query(
     'SELECT * FROM notes WHERE id = :id', [
-        'id' => $_GET['id']
+        'id' => $_POST['id']
     ])->findOrFail(); // get() first()
 
 
 authorize($note['user_id'] === $currentUserId);
 
 
-
-view('notes/show.view.php', [
-    'heading' => 'Note',
-    'note' => $note
+$db->query('DELETE FROM notes WHERE id = :id', [
+    'id' => $_POST['id']
 ]);
+
+// Redirecciona a una página
+header('Location: /notes');
+exit();
 
