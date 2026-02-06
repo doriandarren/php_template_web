@@ -11,5 +11,8 @@ $router->get('/notes', 'controllers/notes/index.php');          // Es para carga
 $router->get('/note', 'controllers/notes/show.php');            // Es para cargar la view de la nota
 $router->delete('/note', 'controllers/notes/destroy.php');      // Es para eliminar la nota
 
+$router->get('/note/edit', 'controllers/notes/edit.php');    // Es para editar la view de la nota
+$router->patch('/note', 'controllers/notes/update.php');            // Es para cargar la view de la nota
+
 $router->get('/notes/create', 'controllers/notes/create.php');  // Es para cargar la view de la nota
 $router->post('/notes', 'controllers/notes/store.php');         // Es para guardar la nota
