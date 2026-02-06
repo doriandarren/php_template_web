@@ -16,3 +16,8 @@ $router->patch('/note', 'controllers/notes/update.php');            // Es para c
 
 $router->get('/notes/create', 'controllers/notes/create.php');  // Es para cargar la view de la nota
 $router->post('/notes', 'controllers/notes/store.php');         // Es para guardar la nota
+
+
+$router->get('/register', 'controllers/registration/create.php');  // 
+$router->post('/register', 'controllers/registration/store.php');  // 
+
