@@ -18,6 +18,12 @@ $router->get('/notes/create', 'controllers/notes/create.php');                  
 $router->post('/notes', 'controllers/notes/store.php');                             // Es para guardar la nota
 
 
-$router->get('/register', 'controllers/registration/create.php')->only('guest');    // 
-$router->post('/register', 'controllers/registration/store.php');                   // 
+// Register
+$router->get('/register', 'controllers/registration/create.php')->only('guest');
+$router->post('/register', 'controllers/registration/store.php')->only('guest');
 
+
+// Login
+$router->get('/login', 'controllers/sessions/create.php')->only('guest');
+$router->post('/sessions', 'controllers/sessions/store.php')->only('guest');
+$router->delete('/sessions', 'controllers/sessions/destroy.php')->only('auth');

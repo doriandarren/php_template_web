@@ -21,12 +21,13 @@
                         About
                     </a>
 
-                    <a
-                        href="/notes"
-                        class="inline-flex items-center px-1 pt-1 text-sm font-medium <?= urlIs('/notes') ? 'bg-gray-900 text-white border-b-2 border-indigo-600' : 'text-gray-500' ?> dark:border-indigo-500 dark:text-white">
-                        Notes
-                    </a>
-
+                    <?php if($_SESSION['user'] ?? false) : ?>
+                        <a
+                            href="/notes"
+                            class="inline-flex items-center px-1 pt-1 text-sm font-medium <?= urlIs('/notes') ? 'bg-gray-900 text-white border-b-2 border-indigo-600' : 'text-gray-500' ?> dark:border-indigo-500 dark:text-white">
+                            Notes
+                        </a>
+                    <?php endif; ?>
                     <a
                         href="/contact"
                         class="inline-flex items-center px-1 pt-1 text-sm font-medium <?= urlIs('/contact') ? 'bg-gray-900 text-white border-b-2 border-indigo-600' : 'text-gray-500' ?> dark:border-indigo-500 dark:text-white">
@@ -46,26 +47,61 @@
 
                 <!-- Profile dropdown -->
                 <el-dropdown class="relative ml-3">
-                    
 
 
-                    <?php if($_SESSION['user'] ?? false) : ?>
 
-                        <button class="relative flex max-w-xs items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:focus-visible:outline-indigo-500">
-                            <span class="absolute -inset-1.5"></span>
-                            <span class="sr-only">Open user menu</span>
-                            <img 
-                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" 
-                                alt="" 
-                                class="size-8 rounded-full outline -outline-offset-1 outline-black/5 dark:outline-white/10"
-                            />
-                        </button>
-                            
+                    <?php if ($_SESSION['user'] ?? false) : ?>
+
+                        <div class="flex">
+
+                            <button class="relative flex max-w-xs items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:focus-visible:outline-indigo-500">
+                                <span class="absolute -inset-1.5"></span>
+                                <span class="sr-only">Open user menu</span>
+                                <img
+                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                    alt=""
+                                    class="size-8 rounded-full outline -outline-offset-1 outline-black/5 dark:outline-white/10" />
+                            </button>
+
+                            <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
+                                <!-- <a
+                                    href="/logout"
+                                    class="inline-flex items-center px-1 pt-1 text-sm font-medium < ?= urlIs('/logout') ? 'bg-gray-900 text-white border-b-2 border-indigo-600' : 'text-gray-500' ?> dark:border-indigo-500 dark:text-white">
+                                    Log Out
+                                </a> -->
+                                <form action="/sessions" method="POST">
+                                    <input type="hidden" name="_method" value="DELETE" />
+                                    <button
+                                        type="submit"
+                                        class="inline-flex items-center px-1 pt-3 text-sm font-medium text-white">
+                                        Log Out
+                                    </button>
+                                </form>
+                            </div>
+
+                        </div>
+
+
+
                     <?php else : ?>
-                        <a 
-                            class="text-white"
-                            href="/register"
-                        >Register</a>
+
+                        <div class="flex">
+                            <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
+                                <a
+                                    href="/register"
+                                    class="inline-flex items-center px-1 pt-1 text-sm font-medium <?= urlIs('/register') ? 'bg-gray-900 text-white border-b-2 border-indigo-600' : 'text-gray-500' ?> dark:border-indigo-500 dark:text-white">
+                                    Register
+                                </a>
+                            </div>
+                            <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
+                                <a
+                                    href="/login"
+                                    class="inline-flex items-center px-1 pt-1 text-sm font-medium <?= urlIs('/login') ? 'bg-gray-900 text-white border-b-2 border-indigo-600' : 'text-gray-500' ?> dark:border-indigo-500 dark:text-white">
+                                    Log In
+                                </a>
+                            </div>
+                        </div>
+
                     <?php endif ?>
 
                     <el-menu anchor="bottom end" popover class="w-48 origin-top-right rounded-md bg-white py-1 shadow-lg outline outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-75 data-leave:ease-in dark:bg-gray-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
