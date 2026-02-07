@@ -7,17 +7,17 @@ $router->get('/contact', 'controllers/contact.php');
 
 
 // Notes
-$router->get('/notes', 'controllers/notes/index.php');          // Es para cargar la view de lista de las notas
-$router->get('/note', 'controllers/notes/show.php');            // Es para cargar la view de la nota
-$router->delete('/note', 'controllers/notes/destroy.php');      // Es para eliminar la nota
+$router->get('/notes', 'controllers/notes/index.php')->only('auth');                // Es para cargar la view de lista de las notas
+$router->get('/note', 'controllers/notes/show.php');                                // Es para cargar la view de la nota
+$router->delete('/note', 'controllers/notes/destroy.php');                          // Es para eliminar la nota
 
-$router->get('/note/edit', 'controllers/notes/edit.php');    // Es para editar la view de la nota
-$router->patch('/note', 'controllers/notes/update.php');            // Es para cargar la view de la nota
+$router->get('/note/edit', 'controllers/notes/edit.php');                           // Es para editar la view de la nota
+$router->patch('/note', 'controllers/notes/update.php');                            // Es para cargar la view de la nota
 
-$router->get('/notes/create', 'controllers/notes/create.php');  // Es para cargar la view de la nota
-$router->post('/notes', 'controllers/notes/store.php');         // Es para guardar la nota
+$router->get('/notes/create', 'controllers/notes/create.php');                      // Es para cargar la view de la nota
+$router->post('/notes', 'controllers/notes/store.php');                             // Es para guardar la nota
 
 
-$router->get('/register', 'controllers/registration/create.php');  // 
-$router->post('/register', 'controllers/registration/store.php');  // 
+$router->get('/register', 'controllers/registration/create.php')->only('guest');    // 
+$router->post('/register', 'controllers/registration/store.php');                   // 
 
